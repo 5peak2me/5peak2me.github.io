@@ -444,7 +444,11 @@ header {
   .home.post-list .post-content > ul {
     list-style: initial; }
   .home.post-list .read-more {
-    color: #42b983; }
+    color: #42b983;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 0 10px 0 10px;
+    display: inline-block; }
 
 .archive {
   max-width: 500px;
