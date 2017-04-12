@@ -183,36 +183,36 @@
   
   <entry>
     <title>Apk打包流程</title>
-    <link href="http://daijinlin.com/2016/07/12/Apk%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/"/>
-    <id>http://daijinlin.com/2016/07/12/Apk打包流程/</id>
-    <published>2016-07-12T06:22:34.000Z</published>
-    <updated>2017-04-12T07:02:52.322Z</updated>
+    <link href="http://daijinlin.com/2016/11/12/Apk%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/"/>
+    <id>http://daijinlin.com/2016/11/12/Apk打包流程/</id>
+    <published>2016-11-12T06:22:34.000Z</published>
+    <updated>2017-04-12T07:39:38.446Z</updated>
     
     <content type="html"><![CDATA[<p>　　<strong> 概述：</strong>Android 构建系统编译应用资源和源代码，然后将它们打包成可供您测试、部署、签署和分发的 APK。<br><a id="more"></a></p>
 <h4 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h4><p>在构建过程中，Android项目将被编译并打包成.apk文件，该apk文件是二进制文件的容器。它包含在设备或模拟器上运行应用程序所需的所有信息，例如已编译的.dex文件（.class文件转换为Dalvik字节码），二进制版本的AndroidManifest.xml文件，已编译资源（resources.arsc）和未编译的资源文件。下图是早起<a href="https://stuff.mit.edu/afs/sipb/project/android/docs/tools/building/index.html" target="_blank" rel="external">官网</a>的一张构建流程图<br><img src="/res/compile/build-simplified.png" alt="简单流程图"></p>
-<p>再来看一张稍微详细一点<br><img src="/res/compile/android_build.png" alt="详细流程图"></p>
+<p>再来看一张稍微详细一点（圆形为操作，方形为对象）<br><img src="/res/compile/android_build.png" alt="详细流程图"></p>
 <p>从上面的流程图，我们可以看出apk打包流程可以分为以下七步</p>
-<ul>
-<li>1.通过aapt打包res资源文件，生成R.java、resources.arsc和res文件（二进制 &amp; 非二进制如res/raw和pic保持原样）</li>
-<li>2.处理.aidl文件，生成对应的Java接口文件</li>
-<li>3.通过Java Compiler编译R.java、Java接口文件、Java源文件，生成.class文件</li>
-<li>4.通过dex命令，将.class文件和第三方库中的.class文件处理生成classes.dex</li>
-<li>5.通过apkbuilder工具，将aapt生成的resources.arsc和res文件、assets文件和classes.dex一起打包生成apk</li>
-<li>6.通过Jarsigner工具，对上面的apk进行debug或release签名</li>
-<li>7.通过zipalign工具，将签名后的apk进行对齐处理。</li>
-</ul>
-<p>以上是基于比较早起使用Eclipse作为IDE开发打包的流程。而如今几乎Android Studio空前盛行的大环境下。新<a href="https://developer.android.com/studio/build/index.html?hl=zh-cn#build-process" target="_blank" rel="external">官网</a>也给出了最新的构建过程图，完全基于Android Studio使用Gradle作为构建工具<br><img src="/res/compile/build-process_2x.png" alt="典型 Android 应用模块的构建流程"></p>
+<ol>
+<li>通过aapt打包res资源文件，生成R.java、resources.arsc和res文件（二进制 &amp; 非二进制如res/raw和pic保持原样）</li>
+<li>处理.aidl文件，生成对应的Java接口文件</li>
+<li>通过Java Compiler编译R.java、Java接口文件、Java源文件，生成.class文件</li>
+<li>通过dex命令，将.class文件和第三方库中的.class文件处理生成classes.dex</li>
+<li>通过apkbuilder工具，将aapt生成的resources.arsc和res文件、assets文件和classes.dex一起打包生成apk</li>
+<li>通过Jarsigner工具，对上面的apk进行debug或release签名</li>
+<li>通过zipalign工具，将签名后的apk进行对齐处理。</li>
+</ol>
+<p>以上就是基于比较早起使用Eclipse作为IDE开发打包的流程。而如今几乎Android Studio空前盛行的大环境下。新<a href="https://developer.android.com/studio/build/index.html?hl=zh-cn#build-process" target="_blank" rel="external">官网</a>也给出了最新的构建过程图，完全基于Android Studio使用Gradle作为构建工具<br><img src="/res/compile/build-process_2x.png" alt="典型 Android 应用模块的构建流程"></p>
 <p>典型 Android 应用模块的构建流程通常依循下列步骤：</p>
-<ul>
-<li>1.编译器将您的源代码转换成 DEX（Dalvik Executable) 文件（其中包括运行在 Android 设备上的字节码），将所有其他内容转换成已编译资源。</li>
-<li>2.APK 打包器将 DEX 文件和已编译资源合并成单个 APK。不过，必须先签署 APK，才能将应用安装并部署到 Android 设备上。</li>
-<li>3.APK 打包器使用调试或发布密钥库签署您的 APK：<ul>
-<li>a.如果您构建的是调试版本的应用（即专用于测试和分析的应用），打包器会使用调试密钥库签署您的应用。Android Studio 自动使用调试密钥库配置新项目。</li>
-<li>b.如果您构建的是打算向外发布的发布版本应用，打包器会使用发布密钥库签署您的应用。要创建发布密钥库，请阅读在 Android Studio 中签署您的应用。</li>
-</ul>
+<ol>
+<li>编译器将您的源代码转换成 DEX（Dalvik Executable) 文件（其中包括运行在 Android 设备上的字节码），将所有其他内容转换成已编译资源。</li>
+<li>APK 打包器将 DEX 文件和已编译资源合并成单个 APK。不过，必须先签署 APK，才能将应用安装并部署到 Android 设备上。</li>
+<li>APK 打包器使用调试或发布密钥库签署您的 APK：<ol>
+<li>如果您构建的是调试版本的应用（即专用于测试和分析的应用），打包器会使用调试密钥库签署您的应用。Android Studio 自动使用调试密钥库配置新项目。</li>
+<li>如果您构建的是打算向外发布的发布版本应用，打包器会使用发布密钥库签署您的应用。要创建发布密钥库，请阅读在 Android Studio 中签署您的应用。</li>
+</ol>
 </li>
-<li>4.在生成最终 APK 之前，打包器会使用 zipalign 工具对应用进行优化，减少其在设备上运行时的内存占用。</li>
-</ul>
+<li>在生成最终 APK 之前，打包器会使用 zipalign 工具对应用进行优化，减少其在设备上运行时的内存占用。</li>
+</ol>
 <p>最后再看一张更加详细的流程图，高能预警<br><a href="http://tools.android.com/tech-docs/new-build-system/build-workflow" target="_blank" rel="external"><img src="/res/compile/android_build_detail.png" alt="image" title="android_build_detail"></a></p>
 <p>参考:<br><a href="http://blog.zhaiyifan.cn/2016/02/13/android-reverse-2/" target="_blank" rel="external">http://blog.zhaiyifan.cn/2016/02/13/android-reverse-2/</a><br><a href="https://developer.android.com/studio/build/index.html?hl=zh-cn#build-config" target="_blank" rel="external">https://developer.android.com/studio/build/index.html?hl=zh-cn#build-config</a></p>
 ]]></content>
