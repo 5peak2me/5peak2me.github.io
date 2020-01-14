@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Markdown高级用法 · J!nl!n's Blog</title><meta name="description" content="Markdown高级用法 - J!nl!n"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://daijinlin.com/atom.xml" title="J!nl!n's Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/5peak2me" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">ABOUT</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Markdown高级用法</h1><div class="post-info">Mar 19, 2017</div><div class="post-content"><h2 id="UML流程图"><a href="#UML流程图" class="headerlink" title="UML流程图"></a>UML流程图</h2><p><a href="https://github.com/adrai/flowchart.js">语法参考</a></p>
+<h4 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;flowchart-0&quot; class=&quot;flow-chart&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">## UML时序图</span><br><span class="line"></span><br><span class="line">[参考链接](https://bramp.github.io/js-sequence-diagrams/)</span><br><span class="line"></span><br><span class="line">~~~sequence</span><br><span class="line">Title: 我是标题</span><br><span class="line">participant A</span><br><span class="line">participant B</span><br><span class="line">participant C</span><br><span class="line">participant D</span><br><span class="line">A-&gt;B: 方法，代表实心箭头，同步消息，比如 AJAX 的同步请求</span><br><span class="line">B-&gt;&gt;C: 请求，</span><br><span class="line">C--&gt;D: 代表虚线，表示返回消息，spring Controller return</span><br><span class="line">D--&gt;&gt;A: 代表非实心箭头 ，异步消息，比如AJAX请求</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Title:连接建立的过程</span><br><span class="line">客户主机-&gt;服务器主机: 连接请求（SYN=1,seq=client_isn） </span><br><span class="line">服务器主机-&gt;客户主机: 授予连接（SYN=1,seq=client_isn）\n ack=client_isn+1</span><br><span class="line">客户主机-&gt;服务器主机: 确认（SYN=0,seq=client_isn+1）\nack=server_isn+1</span><br></pre></td></tr></table></figure>
+<div id="sequence-0"></div>
+
+
+
+<h2 id="mermaid"><a href="#mermaid" class="headerlink" title="mermaid"></a>mermaid</h2><p><a href="http://knsv.github.io/mermaid">语法参考</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph TD</span><br><span class="line">client1--&gt;|read / write|SVN((SVN server))</span><br><span class="line">client2--&gt;|read only|SVN</span><br><span class="line">client3--&gt;|read / write|SVN</span><br><span class="line">client4--&gt;|read only|SVN</span><br><span class="line">client5(...)--&gt;SVN</span><br><span class="line">SVN---|store the data|sharedrive</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Flow</strong></li>
+</ul>
+<pre class="mermaid">graph TD
+A[Hard] -->|Text| B(Round)
+B --> C{Decision}
+C -->|One| D[Result 1]
+C -->|Two| E[Result 2]</pre>
+
+<ul>
+<li><p><strong>Sequence</strong></p>
+<pre class="mermaid">  sequenceDiagram
+Alice->>John: Hello John, how are you?
+loop Healthcheck
+    John->>John: Fight against hypochondria
+end
+Note right of John: Rational thoughts!
+John-->>Alice: Great!
+John->>Bob: How about you?
+Bob-->>John: Jolly good!</pre>
+</li>
+<li><p><strong>Gantt</strong></p>
+<pre class="mermaid">  gantt
+section Section
+Completed :done,    des1, 2014-01-06,2014-01-08
+Active        :active,  des2, 2014-01-07, 3d
+Parallel 1   :         des3, after des1, 1d
+Parallel 2   :         des4, after des1, 1d
+Parallel 3   :         des5, after des3, 1d
+Parallel 4   :         des6, after des4, 1d</pre>
+</li>
+<li><p><strong>Class</strong></p>
+</li>
+</ul>
+<pre class="mermaid">classDiagram
+Class01 <|-- averylongclass : cool <<interface>> Class01
+Class09 --> C2 : Where am i?
+Class09 --* C3
+Class09 --|> Class07
+Class07 : equals()
+Class07 : Object[] elementData
+Class01 : size()
+Class01 : int chimp
+Class01 : int gorilla
+class Class10 {
+  <<service>>
+  int id
+  size()
+}</service></|--></pre>
+
+<ul>
+<li><p><strong>State</strong></p>
+<pre class="mermaid">  stateDiagram
+[*] --> Still
+Still --> [*]
+Still --> Moving
+Moving --> Still
+Moving --> Crash
+Crash --> [*]</pre>
+</li>
+<li><p><strong>Pie</strong></p>
+<p><code>mermaid
+pie
+&quot;Dogs&quot; : 386
+&quot;Cats&quot; : 85
+&quot;Rats&quot; : 15</code><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: Start|past:>http://www.google.com[blank]
+e=>end: End:>http://www.google.com
+op1=>operation: My Operation|past
+op2=>operation: Stuff|current
+sub1=>subroutine: My Subroutine|invalid
+cond=>condition: Yes 
+or No?|approved:>http://www.baidu.com
+c2=>condition: Good idea|rejected
+io=>inputoutput: catch something...|request
+
+st->op1(right)->cond
+cond(yes, right)->c2
+cond(no)->sub1(left)->op1
+c2(yes)->io->e
+c2(no)->op2->e
+```　
+~~~
+
+#### 示例2
+
+```flow
+st=>start: Start:>http://www.google.com[blank]
+e=>end:>http://www.google.com
+op1=>operation: My Operation
+sub1=>subroutine: My Subroutine
+cond=>condition: Yes
+or No?:>http://www.google.com
+io=>inputoutput: catch something...
+para=>parallel: parallel tasks
+
+st->op1->cond
+cond(yes)->io->e
+cond(no)->para
+para(path1, bottom)->sub1(right)->op1
+para(path2, top)->op1</textarea><textarea id="flowchart-0-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script><script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.27/webfontloader.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script><textarea id="sequence-0-code" style="display: none">participant 客户端
+participant 控制器
+participant 业务
+participant 数据库
+
+客户端->控制器: 提交数据店铺
+Note right of 客户端: 提交数据Javascript进行验证
+控制器->控制器: 验证数据完整性
+Note left of 控制器: 返回错误的字段信息
+控制器-->客户端: 数据不完整
+控制器->业务: 保存店铺到数据库
+业务->业务: 保存店铺数据
+业务-->控制器: 保存出现异常
+控制器-->客户端: 保存异常，提示客户端
+业务-> 数据库: 保存成功
+数据库-->业务: success
+业务-->控制器: success
+控制器-->客户端: success 客户端
+Note left of 控制器: 返回正确的提示，并跳转到审核第二步</textarea><textarea id="sequence-0-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("sequence-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("sequence-0-options").value));  var diagram = Diagram.parse(code);  diagram.drawSVG("sequence-0", options);</script></p>
+</li>
+</ul>
+</div></article></div></main><footer><div class="paginator"><a href="/2017/12/09/java内存模型/" class="prev">上一篇</a><a href="/2017/03/11/Retrofit源码分析/" class="next">下一篇</a></div><div class="copyright"><p>© 2016 - 2020 <a href="http://daijinlin.com">J!nl!n</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
