@@ -1,17 +1,72 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Android热修复探究 · J!nl!n's Blog</title><meta name="description" content="Android热修复探究 - J!nl!n"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://daijinlin.com/atom.xml" title="J!nl!n's Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/5peak2me" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">ABOUT</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Android热修复探究</h1><div class="post-info">Apr 1, 2016</div><div class="post-content"><p>　　<strong> 概述：</strong><br><a id="more"></a></p>
-<table>
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Android热修复探究 · J!nl!n's Blog</title><meta name="description" content="Android热修复探究 - J!nl!n"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://daijinlin.com/atom.xml" title="J!nl!n's Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/5peak2me" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">ABOUT</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Android热修复探究</h1><div class="post-info">Apr 1, 2016</div><div class="post-content"><p>　　<strong> 概述：</strong>现阶段主流热修复方案大集合<br><a id="more"></a></p>
+<h3 id="热修复"><a href="#热修复" class="headerlink" title="热修复"></a>热修复</h3><table>
 <thead>
 <tr>
-<th style="text-align:left">方案</th>
-<th style="text-align:center">原理</th>
-<th style="text-align:center">主要缺陷</th>
+<th style="text-align:center">Repo</th>
+<th style="text-align:center">Star</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">100%</td>
-<td style="text-align:center">FF</td>
+<td style="text-align:center"><a href="https://github.com/Tencent/tinker">tinker</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/Tencent/tinker.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/alibaba/AndFix">AndFix</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/alibaba/AndFix.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/jasonross/Nuwa">Nuwa</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/jasonross/Nuwa.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/Meituan-Dianping/Robust">Robust</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/Meituan-Dianping/Robust.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/eleme/Amigo">Amigo</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/eleme/Amigo.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/meili/Aceso">Aceso</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/meili/Aceso.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/lizhangqu/QFix">QFix</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/lizhangqu/QFix.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/dodola/HotFix">HotFix</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/dodola/HotFix.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/dodola/RocooFix">RocooFix</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/dodola/RocooFix.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/dodola/AnoleFix">AnoleFix</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/dodola/AnoleFix.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/AItsuki/HotFix">HotFix</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/AItsuki/HotFix.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/ireaderlab/ZeusHotfix">ZeusHotfix</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/ireaderlab/ZeusHotfix.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/HalfStackDeveloper/Savior">Savior</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/HalfStackDeveloper/Savior.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/achellies/ultron">ultron</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/achellies/ultron.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://github.com/bunnyblue/DroidFix">DroidFix</a></td>
+<td style="text-align:center"><a href><img src="https://img.shields.io/github/stars/bunnyblue/DroidFix.svg?style=social&amp;label=Star" alt="GitHub stars"></a></td>
 </tr>
 </tbody>
 </table>
-</div></article></div></main><footer><div class="paginator"><a href="/2016/04/02/Android-hotfix-1/" class="prev">上一篇</a><a href="/2016/03/17/关于RelativeLayout和LinearLayout的性能讨论/" class="next">下一篇</a></div><div class="copyright"><p>© 2016 - 2020 <a href="http://daijinlin.com">J!nl!n</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+</div></article></div></main><footer><div class="paginator"><a href="/2016/04/02/Android-hotfix-1/" class="prev">PREV</a><a href="/2016/03/17/关于RelativeLayout和LinearLayout的性能讨论/" class="next">NEXT</a></div><div class="copyright"><p>© 2016 - 2020 <a href="http://daijinlin.com">J!nl!n</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
